@@ -1,2 +1,2 @@
 # RegionalPopulation
-This is supposed to be a Geomap of Pennsylvania, but I was having issues with the Json files, so I had to default to California Json that was provided.
+This is GeoMap of Pennsylvania that when change color button is pressed it will change the color of the map from red to blue.
