@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <center>
-    <h1><b>California Population Density, 2016</b></h1>
+    <h1><b>Pennsylvania Population Density, 2016</b></h1>
 </center>
 
 <meta charset="utf-8">
@@ -36,6 +36,7 @@ svg {
 </style>
 
     <script>
+        
         
 function myFunction()
 		{
@@ -78,7 +79,7 @@ g.call(xAxis).append("text")
     .attr("y", -6)
     .text("Population per square mile");
 
-d3.json("ca.json", function(error, ca) {
+d3.json("pa.json", function(error, ca) {
   if (error) throw error;
 
   var tracts = topojson.feature(ca, ca.objects.tracts);
@@ -150,7 +151,7 @@ g.call(xAxis).append("text")
     .attr("y", -6)
     .text("Population per square mile");
 
-d3.json("ca.json", function(error, ca) {
+d3.json("pa.json", function(error, ca) {
   if (error) throw error;
 
   var tracts = topojson.feature(ca, ca.objects.tracts);
@@ -192,27 +193,39 @@ d3.select(self.frameElement).style("height", height + "px");
     
     <center>
 			<input type="button" onclick="myFunction()" value="Change color" />
+            
    </center>
 
 
 <script type = "text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://d3js.org/topojson.v1.min.js"></script>
-<script>
 
+<script src="https://d3js.org/d3-array.v1.min.js"></script>
+<script src="https://d3js.org/d3-geo.v1.min.js"></script>
+<script src="https://d3js.org/d3-geo-projection.v1.min.js"></script>
+<script>
     
     
     var swap = 0;
+    var swap2 = 0;
 
 <!--This is the end of added code -->    
     
    
 var width = 960,
-    height = 1100;
+    height = 700;
 
 var formatNumber = d3.format(",d");
+    
+    var projection = d3.geo.albers()
+    .center([-75, 40])
+    .rotate([3, 1])
+    .parallels([40, -39]) 
+    .scale(9000)
+    .translate([(width / 2), (height / 2 + 100)]);
 
 var path = d3.geo.path()
-    .projection(null);
+    .projection(projection);
 
 var color = d3.scale.threshold()
     .domain([1, 10, 50, 100, 500, 1000, 2000, 5000])
@@ -258,7 +271,7 @@ g.call(xAxis).append("text")
     .attr("y", -6)
     .text("Population per square mile");
 
-d3.json("ca.json", function(error, ca) {
+d3.json("pa.json", function(error, ca) {
   if (error) throw error;
 
   var tracts = topojson.feature(ca, ca.objects.tracts);
